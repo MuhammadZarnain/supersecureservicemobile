@@ -4,7 +4,7 @@ import { useLocalSearchParams } from 'expo-router';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 
-const SERVER_IP = 'http://192.168.1.37:5000';
+const SERVER_IP = 'http://192.168.1.24:5000';
 
 type Report = {
   id: number;

@@ -6,7 +6,7 @@ import { useUser } from '../context/UserContext';
 import { useRouter } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
 
-const SERVER_IP = 'http://192.168.1.37:5000';
+const SERVER_IP = 'http://192.168.1.24:5000';
 
 type Report = {
   id: number;

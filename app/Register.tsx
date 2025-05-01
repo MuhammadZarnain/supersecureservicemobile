@@ -74,7 +74,7 @@ export const SignUpForm: React.FC = () => {
   
     if (isValid) {
       try {
-        const response = await fetch('http://192.168.1.37:5000/api/newusers', {
+        const response = await fetch('http://192.168.1.24:5000/api/newusers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

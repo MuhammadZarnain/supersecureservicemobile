@@ -11,7 +11,7 @@ export const AuthScreen: React.FC = () => {
   const [codeSent, setCodeSent] = useState(false);
   const [code, setCode] = useState("");
   const [userPhone, setUserPhone] = useState(""); // Save phone from login API for OTP
-  const SERVER_IP = "http://192.168.1.37:5000";
+  const SERVER_IP = "http://192.168.1.24:5000";
   const router = useRouter();
   const { setUser } = useUser();
 
@@ -99,9 +99,9 @@ export const AuthScreen: React.FC = () => {
       setUser(user);
       setUserPhone(user.Phone); // Save for OTP use
       Alert.alert("Success", "Number verified successfully", [
-        { text: "OK", onPress: () => router.push("/generatereport") },
+        { text: "OK",},
       ]);
-     /*  await sendCode(user.Phone); */
+     await sendCode(user.Phone);
     } else {
       Alert.alert("Error", "Phone number not found for OTP");
     }

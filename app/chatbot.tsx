@@ -26,11 +26,14 @@ const AddressForm = () => {
   const [city, setCity] = useState('');
   const [area, setArea] = useState('');
   const [postalCode, setPostalCode] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [crimeRate, setCrimeRate] = useState<number | null>(null);
   const { user } = useUser();
-  const SERVER_IP = 'http://192.168.1.37:5000';
+  const SERVER_IP = 'http://192.168.1.24:5000';
   const handleSubmit = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     const found = crimeData.find(([entryArea]) => entryArea === area);
     const rate = found ? parseFloat(found[1]) : null;
     if (rate === null || !user?.id) return;
@@ -50,6 +53,7 @@ const AddressForm = () => {
       if(!response.ok) {
         throw new Error('Failed to save report');
       }
+      setIsSubmitting(false);
       router.push({
         pathname: '/crime-result',
         params: { area, crimeRate: rate.toString() },
@@ -106,8 +110,8 @@ const AddressForm = () => {
         keyboardType="numeric"
       />
 
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.submitButtonText}>Submit</Text>
+      <TouchableOpacity style={[styles.submitButton, isSubmitting && styles.submitButtonDisabled]} onPress={handleSubmit} disabled={isSubmitting}>
+        <Text style={styles.submitButtonText}>{isSubmitting ? 'Submitting...' : 'Submit'}</Text> 
       </TouchableOpacity>
 
       {/* Modal for showing crime rate */}
@@ -158,6 +162,11 @@ const styles = StyleSheet.create({
   backText: {
     color: '#007BFF',
     fontSize: 16,
+  },
+  submitButtonDisabled: {
+    opacity: 0.7,
+    backgroundColor: "#A8A8A8",
+    borderColor: "#A8A8A8",
   },
   label: {
     fontSize: 14,

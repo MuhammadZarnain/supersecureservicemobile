@@ -6,7 +6,7 @@ const sendVerificationCode = async(req, res) =>{
     const {phone_number} = req.body;
 
     const verificationOptions ={
-        service_name: 'Secure Estate Ledger',
+        service_name: 'Super Secure Services',
         seconds: 600,
     }
 

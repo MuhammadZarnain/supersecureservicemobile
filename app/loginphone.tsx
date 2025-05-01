@@ -10,7 +10,7 @@ export const AuthScreen: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
   const [code, setCode] = useState("");
-  const SERVER_IP = "http://192.168.1.37:5000";
+  const SERVER_IP = "http://192.168.1.24:5000";
   const router = useRouter();
   const { setUser } = useUser();
 
@@ -103,9 +103,9 @@ export const AuthScreen: React.FC = () => {
     setUser(user);
     if (user) {
       Alert.alert("Success", "Number verified successfully", [
-        { text: "OK", onPress: () => router.push("/generatereport") },
+        { text: "OK",  },
       ]);
-      /* await sendCode(); */
+       await sendCode();
     }
     setIsSubmitting(false);
   };
